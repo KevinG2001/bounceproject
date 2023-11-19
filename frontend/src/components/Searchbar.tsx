@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Searchbar() {
+function Searchbar({ onSearch }) {
   const [search, setSearch] = useState("");
 
   function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
@@ -8,10 +8,9 @@ function Searchbar() {
   }
 
   async function handleClick() {
-    console.log("Query: ", search);
     const request = await fetch(`http://localhost:5000/api/data/${search}`);
     const data = await request.json();
-    console.log(data);
+    onSearch(data);
   }
 
   return (

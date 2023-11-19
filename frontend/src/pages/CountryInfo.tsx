@@ -3,29 +3,18 @@ import Geography from "../components/Geography";
 import Politics from "../components/Politics";
 // import Geography from "../components/Geography";
 
-function CountryInfo() {
-  const [backendData, setBackendData] = useState([]);
+function CountryInfo({ countryInfo }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/data") // Replace with your backend URL
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setBackendData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  }, []);
+  // Assuming countryInfo is an array of countries
 
+  // Simulating an effect that would trigger when countryInfo changes (you might adjust this according to your actual use case)
+  useEffect(() => {
+    if (countryInfo && countryInfo.length > 0) {
+      setLoading(false); // Assuming data is available, setting loading to false
+    }
+  }, [countryInfo]);
   return (
     <div>
       <h1>Country Data</h1>
@@ -36,15 +25,15 @@ function CountryInfo() {
       ) : (
         <div>
           <h2>Received Data:</h2>
-          {backendData.map((data: any) => (
+          {countryInfo.map((data: any) => (
             <>
               <div key={data.idd.suffixes}>{data.name.common}</div>
               <img src={data.flags.png} alt="" />
             </>
           ))}
           {/* Passing backendData as prop to Geography component */}
-          <Geography data={backendData} />
-          <Politics data={backendData} />
+          <Geography data={countryInfo} />
+          <Politics data={countryInfo} />
         </div>
       )}
     </div>
