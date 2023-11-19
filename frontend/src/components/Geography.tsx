@@ -1,12 +1,12 @@
 import React from "react";
 
-const Geography = (props) => {
+const Geography = (props: any) => {
   const { data } = props;
   return (
     <>
       <div>
         <h1>Geography</h1>
-        {data.map((country) => (
+        {data.map((country: any) => (
           <>
             <div>Country Capital: {country.capital}</div>
             <div>Region: {country.region}</div>

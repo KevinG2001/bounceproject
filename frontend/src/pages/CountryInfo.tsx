@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Geography from "../components/Geography";
+import Politics from "../components/Politics";
 // import Geography from "../components/Geography";
 
 function CountryInfo() {
@@ -21,7 +22,6 @@ function CountryInfo() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setError("Error fetching data. Please try again later.");
         setLoading(false);
       });
   }, []);
@@ -36,11 +36,15 @@ function CountryInfo() {
       ) : (
         <div>
           <h2>Received Data:</h2>
-          {backendData.map((data) => (
-            <div>{data.name.common}</div>
+          {backendData.map((data: any) => (
+            <>
+              <div key={data.idd.suffixes}>{data.name.common}</div>
+              <img src={data.flags.png} alt="" />
+            </>
           ))}
           {/* Passing backendData as prop to Geography component */}
           <Geography data={backendData} />
+          <Politics data={backendData} />
         </div>
       )}
     </div>
