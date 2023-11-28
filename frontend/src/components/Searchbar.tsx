@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Styles from "../styles/searchbar.module.css";
 
 function Searchbar({ onSearch }) {
   const [search, setSearch] = useState("");
@@ -8,16 +9,32 @@ function Searchbar({ onSearch }) {
   }
 
   async function handleClick() {
-    const request = await fetch(`http://localhost:5000/api/data/${search}`);
-    const data = await request.json();
-    onSearch(data);
+    try {
+      const request = await fetch(`http://localhost:5000/api/data/${search}`);
+      const data = await request.json();
+      onSearch(data);
+    } catch (error) {
+      console.error("Fetch error", error);
+    }
   }
 
   return (
     <>
-      <div>
-        <input type="text" value={search} onChange={handleSearch} />
-        <button onClick={handleClick}>Search</button>
+      <div className={Styles.container}>
+        <input
+          type="text"
+          placeholder=""
+          value={search}
+          onChange={handleSearch}
+          className={Styles.searchBarInput}
+        />
+        {/*  //TODO Make label move when input is filled (placeholder)
+        <label htmlFor="searchBarInput" className={Styles.searchBarLbl}>
+          Search for country!
+        </label> */}
+        <button onClick={handleClick} className={Styles.searchBtn}>
+          Search
+        </button>
       </div>
     </>
   );
