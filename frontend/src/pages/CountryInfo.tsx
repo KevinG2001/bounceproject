@@ -28,8 +28,10 @@ function CountryInfo({ countryInfo }) {
               <img src={data.flags.png} alt="" />
             </>
           ))}
-          <Geography data={countryInfo} />
-          <Politics data={countryInfo} />
+          <div className={Styles.infoPanelWrapper}>
+            <Geography data={countryInfo} className={Styles.infoPanel} />
+            <Politics data={countryInfo} className={Styles.infoPanel} />
+          </div>
         </div>
       )}
     </div>
