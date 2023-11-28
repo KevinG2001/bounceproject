@@ -10,6 +10,7 @@
 .container.top {
   position: relative;
   height: 20vh;
+  --y: 80px;
 }
 
 .top {
