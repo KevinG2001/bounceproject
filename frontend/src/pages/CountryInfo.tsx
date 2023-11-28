@@ -22,10 +22,11 @@ function CountryInfo({ countryInfo }) {
         <p>{error}</p>
       ) : (
         <div className={Styles.wrapper}>
-          <h2>Received Data:</h2>
           {countryInfo.map((data: any) => (
             <>
-              <div key={data.idd.suffixes}>{data.name.common}</div>
+              <div className={Styles.countryTitle} key={data.idd.suffixes}>
+                {data.name.common}
+              </div>
               <img src={data.flags.png} alt="" />
             </>
           ))}

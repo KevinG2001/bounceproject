@@ -58,9 +58,14 @@
   display: flex;
 }
 
+.popular.top {
+  top: -50px;
+}
+
 .popSearch {
   padding: 0px 5px;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-size: 16px;
 }

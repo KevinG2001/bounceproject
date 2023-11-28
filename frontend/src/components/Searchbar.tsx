@@ -51,7 +51,11 @@ function Searchbar({ onSearch }) {
           Search
         </button>
       </div>
-      <div className={Styles.popular}>
+      <div
+        className={`${Styles.popular} ${
+          searchBarPos === "top" ? Styles.top : ""
+        }`}
+      >
         Popular searches:
         <button
           className={Styles.popSearch}
