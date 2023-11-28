@@ -21,7 +21,11 @@ function Searchbar({ onSearch }) {
   }
 
   return (
-    <div className={Styles.container}>
+    <div
+      className={`${Styles.container} ${
+        searchBarPos === "top" ? Styles.top : ""
+      }`}
+    >
       <input
         type="text"
         placeholder=""
