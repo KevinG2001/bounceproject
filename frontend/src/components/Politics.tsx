@@ -1,5 +1,3 @@
-import React from "react";
-
 const Politics = (props: any) => {
   const { data } = props;
 

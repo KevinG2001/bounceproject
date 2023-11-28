@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Styles from "../styles/countryInfo.module.css";
 import Geography from "../components/Geography";
 import Politics from "../components/Politics";
+import Extra from "../components/Extra";
 // import Geography from "../components/Geography";
 
 function CountryInfo({ countryInfo }) {
@@ -31,6 +32,7 @@ function CountryInfo({ countryInfo }) {
           <div className={Styles.infoPanelWrapper}>
             <Geography data={countryInfo} className={Styles.infoPanel} />
             <Politics data={countryInfo} className={Styles.infoPanel} />
+            <Extra data={countryInfo} className={Styles.infoPanel} />
           </div>
         </div>
       )}
