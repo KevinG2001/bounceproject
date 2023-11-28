@@ -21,7 +21,7 @@ function CountryInfo({ countryInfo }) {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div>
+        <div className={Styles.wrapper}>
           <h2>Received Data:</h2>
           {countryInfo.map((data: any) => (
             <>
@@ -30,9 +30,15 @@ function CountryInfo({ countryInfo }) {
             </>
           ))}
           <div className={Styles.infoPanelWrapper}>
-            <Geography data={countryInfo} className={Styles.infoPanel} />
-            <Politics data={countryInfo} className={Styles.infoPanel} />
-            <Extra data={countryInfo} className={Styles.infoPanel} />
+            <div className={Styles.infoPanel}>
+              <Geography data={countryInfo} />
+            </div>
+            <div className={Styles.infoPanel}>
+              <Politics data={countryInfo} />
+            </div>
+            <div className={Styles.infoPanel}>
+              <Extra data={countryInfo} />
+            </div>
           </div>
         </div>
       )}
