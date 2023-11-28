@@ -7,6 +7,16 @@
   height: 40vh;
 }
 
+.container.top {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  --y: 175px;
+  height: 40vh;
+}
+
 .top {
   display: flex;
   width: 100%;
@@ -29,20 +39,19 @@
 }
 
 /* TODO Make label move when input is filled */
-/* .searchBarLbl {
+.searchBarLbl {
   position: absolute;
   left: 180px;
   top: var(--y);
-} */
-
-/* input:focus ~ label {
-  top: calc(var(--y) - (20px));
-  background-color: red;
 }
-input::placeholder(:valid) ~ label {
-  top: calc(var(--y) - (20px));
-  background-color: red;
-} */
+
+/* Update the styles to manage label animation */
+.searchBarInput:focus + label,
+.searchBarInput:not(:placeholder-shown) + label {
+  top: calc(var(--y) - 20px);
+  font-size: 12px; /* Adjust the font size as needed */
+  color: red; /* Change label color or add any desired styles */
+}
 
 .searchBtn {
   padding: 16px 24px;

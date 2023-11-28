@@ -3,8 +3,9 @@ import Styles from "../styles/searchbar.module.css";
 
 function Searchbar({ onSearch }) {
   const [search, setSearch] = useState("");
+  const [searchBarPos, setSearchBarPos] = useState("");
 
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleSearch(e) {
     setSearch(e.target.value);
   }
 
@@ -13,30 +14,28 @@ function Searchbar({ onSearch }) {
       const request = await fetch(`http://localhost:5000/api/data/${search}`);
       const data = await request.json();
       onSearch(data);
+      setSearchBarPos("top"); // Change search bar position to 'top' after search
     } catch (error) {
       console.error("Fetch error", error);
     }
   }
 
   return (
-    <>
-      <div className={Styles.container}>
-        <input
-          type="text"
-          placeholder=""
-          value={search}
-          onChange={handleSearch}
-          className={Styles.searchBarInput}
-        />
-        {/*  //TODO Make label move when input is filled (placeholder)
-        <label htmlFor="searchBarInput" className={Styles.searchBarLbl}>
-          Search for country!
-        </label> */}
-        <button onClick={handleClick} className={Styles.searchBtn}>
-          Search
-        </button>
-      </div>
-    </>
+    <div className={Styles.container}>
+      <input
+        type="text"
+        placeholder=""
+        value={search}
+        onChange={handleSearch}
+        className={Styles.searchBarInput}
+      />
+      <label htmlFor="searchBarInput" className={Styles.searchBarLbl}>
+        Search for country!
+      </label>
+      <button onClick={handleClick} className={Styles.searchBtn}>
+        Search
+      </button>
+    </div>
   );
 }
 
