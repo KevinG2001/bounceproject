@@ -1,4 +1,5 @@
 .container {
+  --y: 175px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,12 +37,11 @@
   top: var(--y);
 }
 
-/* Update the styles to manage label animation */
-.searchBarInput:focus + label,
-.searchBarInput:not(:placeholder-shown) + label {
+.searchBarInput:focus + .searchBarLbl,
+.searchBarInput:not(:placeholder-shown) + .searchBarLbl {
   top: calc(var(--y) - 20px);
-  font-size: 12px; /* Adjust the font size as needed */
-  color: red; /* Change label color or add any desired styles */
+  font-size: 12px;
+  color: red;
 }
 
 .searchBtn {
