@@ -43,3 +43,55 @@
   border-radius: 25px;
   background-color: var(--black-colour);
 }
+
+@media (max-width: 1200px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid var(--primary-colour);
+    border-radius: 25px;
+    background-color: var(--secondary-colour);
+  }
+
+  img {
+    width: 200px;
+  }
+
+  .innerContainer {
+    width: 850px;
+  }
+  .countryTitle {
+    font-size: 2rem;
+  }
+
+  .infoPanelWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .infoPanel {
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    height: 300px;
+    flex-grow: 1;
+    margin: 1%;
+    border: 2px solid var(--primary-colour);
+    border-radius: 25px;
+    background-color: var(--black-colour);
+  }
+}
