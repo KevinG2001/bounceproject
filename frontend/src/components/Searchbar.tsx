@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Styles from "../styles/searchbar.module.css";
 
 function Searchbar({ onSearch }) {
@@ -20,13 +20,7 @@ function Searchbar({ onSearch }) {
     }
   }
 
-  useEffect(() => {
-    if (search !== "") {
-      handleClick();
-    }
-  }, [search]);
-
-  function handlePopularSearch(selectedSearch: any) {
+  function handlePopularSearch(selectedSearch) {
     setSearch(selectedSearch);
   }
 
