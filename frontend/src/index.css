@@ -5,9 +5,14 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--black-colour);
   width: 100%;
   min-height: 100vh;
+
+  --primary-colour: #492461;
+  --secondary-colour: #311a40;
+  --white-colour: #ffffff;
+  --black-colour: #111112;
 }
 
 body {
