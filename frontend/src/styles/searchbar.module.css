@@ -87,3 +87,38 @@
   cursor: pointer;
   font-size: 16px;
 }
+
+@media (max-width: 1920px) {
+  .container {
+    --y: 130px;
+  }
+  .container.top {
+    --y: 50px;
+  }
+
+  .searchBarInput {
+    background-color: var(--black-colour);
+    width: 80%;
+    padding: 24px 28px;
+    margin: 1% 0%;
+    border-radius: 25px;
+    border-right: transparent;
+    border: 2px solid var(--primary-colour);
+    outline: none;
+    font-size: large;
+  }
+
+  .searchBarLbl {
+    font-size: 20px;
+  }
+
+  .searchBtn {
+    right: 135px;
+  }
+  .popular {
+    top: -90px;
+  }
+  .popular.top {
+    top: -20px;
+  }
+}
