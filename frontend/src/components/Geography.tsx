@@ -26,6 +26,7 @@ const Geography = (props: any) => {
               Borders:
               <div className={Styles.panel}>
                 {country.borders.map((border: any, index: any) => (
+                  // TODO: Turn bordering countries into buttons so you can search the country
                   <div className={Styles.panelTag} key={index}>
                     {border}
                   </div>
