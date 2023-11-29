@@ -15,7 +15,7 @@ function CountryInfo({ countryInfo }) {
     }
   }, [countryInfo]);
   return (
-    <div className={Styles.container}>
+    <div className={Styles.innerContainer}>
       {loading ? (
         <></>
       ) : error ? (

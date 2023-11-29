@@ -1,0 +1,31 @@
+.borderWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.panelTag {
+  display: flex;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerContainer {
+  margin: 5% 0%;
+  width: 250px;
+  height: 350px;
+  align-items: center;
+  text-align: center;
+}

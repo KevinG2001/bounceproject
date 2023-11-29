@@ -1,3 +1,5 @@
+import Styles from "../styles/card.module.css";
+
 const Politics = (props: any) => {
   const { data } = props;
 
@@ -6,7 +8,7 @@ const Politics = (props: any) => {
   };
   return (
     <>
-      <div>
+      <div className={Styles.innerContainer}>
         <h1>Politics</h1>
         {data.map((country: any) => (
           <>

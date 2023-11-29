@@ -31,4 +31,5 @@
   justify-content: center;
   width: 250px;
   height: 350px;
+  flex-grow: 1;
 }
