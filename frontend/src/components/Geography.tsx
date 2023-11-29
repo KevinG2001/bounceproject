@@ -1,4 +1,3 @@
-import React from "react";
 import Styles from "../styles/card.module.css";
 const Geography = (props: any) => {
   const { data } = props;

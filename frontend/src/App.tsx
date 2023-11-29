@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import CountryInfo from "./pages/CountryInfo";
 import Searchbar from "./components/Searchbar";
 import Styles from "./styles/app.module.css";

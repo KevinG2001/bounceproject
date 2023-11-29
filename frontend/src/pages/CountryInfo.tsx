@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Styles from "../styles/countryInfo.module.css";
 import Geography from "../components/Geography";
 import Politics from "../components/Politics";
