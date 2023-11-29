@@ -1,11 +1,15 @@
 import { useState } from "react";
 import Styles from "../styles/searchbar.module.css";
 
-function Searchbar({ onSearch }) {
+interface SearchbarProps {
+  onSearch: (data: any) => void;
+}
+
+function Searchbar({ onSearch }: SearchbarProps) {
   const [search, setSearch] = useState("");
   const [searchBarPos, setSearchBarPos] = useState("");
 
-  function handleSearch(e) {
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
   }
 
@@ -14,13 +18,13 @@ function Searchbar({ onSearch }) {
       const request = await fetch(`http://localhost:5000/api/data/${search}`);
       const data = await request.json();
       onSearch(data);
-      setSearchBarPos("top"); // Change search bar position to 'top' after search
+      setSearchBarPos("top");
     } catch (error) {
       console.error("Fetch error", error);
     }
   }
 
-  function handlePopularSearch(selectedSearch) {
+  function handlePopularSearch(selectedSearch: string) {
     setSearch(selectedSearch);
   }
 
