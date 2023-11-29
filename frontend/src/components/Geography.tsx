@@ -5,15 +5,12 @@ const Geography = (props: any) => {
   return (
     <>
       <div className={Styles.innerContainer}>
-        <h1>Geography</h1>
+        <div className={Styles.cardTitle}>Geography</div>
         {data.map((country: any, index: number) => (
           <div key={index}>
             <div>Country Capital: {country.capital}</div>
-            <div>Region: {country.region}</div>
             <div>Continent: {country.continents}</div>
             <div>
-              Latitude and Longitude
-              <br />
               {country.latlng?.map((gps: number, index: number) => (
                 <div key={index}>
                   {index === 0 ? "Latitude: " : "Longitude: "}

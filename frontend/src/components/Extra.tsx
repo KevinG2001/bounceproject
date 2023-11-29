@@ -6,7 +6,7 @@ const Extra = (props: any) => {
   return (
     <>
       <div className={Styles.innerContainer}>
-        <h1>Extra</h1>
+        <div className={Styles.cardTitle}>Extra</div>
         {data.map((country: any, index: number) => (
           <div key={index}>
             <div>Start of week: {country.startOfweek}</div>

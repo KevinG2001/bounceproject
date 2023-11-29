@@ -9,7 +9,7 @@ const Politics = (props: any) => {
   return (
     <>
       <div className={Styles.innerContainer}>
-        <h1>Politics</h1>
+        <div className={Styles.cardTitle}>Politics</div>
         {data.map((country: any) => (
           <>
             <div>
