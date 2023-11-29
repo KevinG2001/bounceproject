@@ -1,5 +1,6 @@
+/* TODO: Need to fix positions when site is resized */
 .container {
-  --y: 175px;
+  --y: 245px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +11,7 @@
 .container.top {
   position: relative;
   height: 20vh;
-  --y: 80px;
+  --y: 115px;
 }
 
 .top {
@@ -38,7 +39,7 @@
 .searchBarLbl {
   font-size: large;
   position: absolute;
-  left: 200px;
+  left: 280px;
   top: var(--y);
   font-size: medium;
 }
@@ -58,8 +59,8 @@
   background-color: transparent;
   border: 2px solid var(--primary-colour);
 
-  position: absolute;
-  right: 170px;
+  position: relative;
+  right: 240px;
 
   border-radius: 50px;
   padding: 16px 24px;
@@ -74,12 +75,12 @@
 
 .popular {
   position: relative;
-  top: -150px;
+  top: -200px;
   display: flex;
 }
 
 .popular.top {
-  top: -50px;
+  top: -80px;
 }
 
 .popSearch {
@@ -92,7 +93,7 @@
 
 @media (max-width: 1920px) {
   .container {
-    --y: 130px;
+    --y: 170px;
   }
   .container.top {
     --y: 50px;
@@ -115,7 +116,7 @@
   }
 
   .searchBtn {
-    right: 135px;
+    right: 110px;
   }
   .popular {
     top: -90px;
