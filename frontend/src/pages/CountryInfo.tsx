@@ -8,23 +8,31 @@ function CountryInfo({ countryInfo }: CountryInfoProps) {
   return (
     <div className={Styles.innerContainer}>
       <div className={Styles.wrapper}>
-        {countryInfo.map((data: Country) => (
-          <div className={Styles.countryItem} key={data.idd.suffixes}>
-            <div className={Styles.countryTitle}>{data.name.common}</div>
-            <img src={data.flags.png} alt={data.name.common} />
+        {countryInfo.length === 0 ? (
+          <div className={Styles.countryItem}>
+            <p>No country searched yet.</p>
           </div>
-        ))}
-        <div className={Styles.infoPanelWrapper}>
-          <div className={Styles.infoPanel}>
-            <Geography data={countryInfo} />
+        ) : (
+          countryInfo.map((data: Country) => (
+            <div className={Styles.countryItem} key={data.idd.suffixes}>
+              <div className={Styles.countryTitle}>{data.name.common}</div>
+              <img src={data.flags.png} alt={data.name.common} />
+            </div>
+          ))
+        )}
+        {countryInfo.length > 0 && (
+          <div className={Styles.infoPanelWrapper}>
+            <div className={Styles.infoPanel}>
+              <Geography data={countryInfo} />
+            </div>
+            <div className={Styles.infoPanel}>
+              <Politics data={countryInfo} />
+            </div>
+            <div className={Styles.infoPanel}>
+              <Extra data={countryInfo} />
+            </div>
           </div>
-          <div className={Styles.infoPanel}>
-            <Politics data={countryInfo} />
-          </div>
-          <div className={Styles.infoPanel}>
-            <Extra data={countryInfo} />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
