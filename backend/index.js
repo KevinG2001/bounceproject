@@ -3,13 +3,10 @@ const cors = require("cors");
 const https = require("https");
 
 const app = express();
-
-// Enable CORS for all routes
 app.use(cors());
 
 app.get("/api/data/:country", (req, res) => {
   const country = req.params.country;
-  // Make a request to the external API
   https
     .get(
       `https://restcountries.com/v3.1/name/${country}?fullText=true`,
@@ -23,7 +20,7 @@ app.get("/api/data/:country", (req, res) => {
         response.on("end", () => {
           try {
             const jsonData = JSON.parse(data);
-            res.json(jsonData); // Send the received data back to the frontend
+            res.json(jsonData);
           } catch (error) {
             res
               .status(500)
@@ -37,6 +34,7 @@ app.get("/api/data/:country", (req, res) => {
     });
 });
 
-app.listen(5000, () => {
-  console.log("Listening on port 5000");
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
