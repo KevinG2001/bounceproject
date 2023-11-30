@@ -14,7 +14,7 @@ function Searchbar({ onSearch }: SearchbarProps) {
     setLoading(true);
     try {
       const request = await fetch(
-        `https://your-backend-domain/api/data/${search}`
+        `https://brave-bay-0b6be7b03.4.azurestaticapps.net/api/data/${search}`
       );
       const data = await request.json();
       onSearch(data);
