@@ -13,7 +13,9 @@ function Searchbar({ onSearch }: SearchbarProps) {
   async function handleClick() {
     setLoading(true);
     try {
-      const request = await fetch(`/api/data/${search}`);
+      const request = await fetch(
+        `https://your-backend-domain/api/data/${search}`
+      );
       const data = await request.json();
       onSearch(data);
       setSearchBarPos("top");
