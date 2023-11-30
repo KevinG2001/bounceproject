@@ -1,4 +1,7 @@
-name: Deploy Backend and Frontend to Azure Web App
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy Node.js app to Azure Web App - bounceApi
 
 on:
   push:
@@ -11,61 +14,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      # Backend Build and Artifact Creation
-      - name: Build Backend
-        run: |
-          # Navigate to backend directory
-          cd backend
-          # Install dependencies (modify these commands as per your setup)
-          npm install
-          # Zip backend files as an artifact
-          zip -r backend-artifact.zip .
-
-      # Frontend Build and Artifact Creation (if applicable)
-      # ... (Frontend build steps, if needed)
-
-      # Upload Backend Artifact
-      - name: Upload Backend Artifact
-        uses: actions/upload-artifact@v2
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
         with:
-          name: backend-app
-          path: backend/backend-artifact.zip
+          node-version: '18.x'
 
-      # Upload Frontend Artifact (if applicable)
-      # ... (Upload frontend artifact steps, if needed)
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present
+          npm run test --if-present
+
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* -r
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: node-app
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
-
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    
     steps:
-      # Download Backend Artifact
-      - name: Download Backend Artifact
-        uses: actions/download-artifact@v2
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
         with:
-          name: backend-app
+          name: node-app
 
-      # Download Frontend Artifact (if applicable)
-      # ... (Download frontend artifact steps, if needed)
-
-      # Unzip Backend Artifact
-      - name: Unzip Backend Artifact
-        run: unzip backend-artifact.zip -d backend-directory
+      - name: Unzip artifact for deployment
+        run: unzip release.zip
       
-      # Install Backend Dependencies
-      - name: Install Backend Dependencies
-        working-directory: backend-directory
-        run: npm install
-
-      # Start Backend
-      - name: Start Backend
-        working-directory: backend-directory
-        run: npm start
-
-      # Serve Frontend (within Backend, adjust as per your setup)
-      # ... (Serve frontend within backend steps, if applicable)
-
-      # ... (other deployment steps specific to your setup)
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'bounceApi'
+          slot-name: 'Production'
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_06DAC719232742F5B7853E86B93BF9B7 }}
