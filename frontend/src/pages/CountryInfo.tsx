@@ -2,18 +2,17 @@ import Styles from "../styles/countryInfo.module.css";
 import Geography from "../components/Geography";
 import Politics from "../components/Politics";
 import Extra from "../components/Extra";
+import { Country, CountryInfoProps } from "../types/types";
 
-function CountryInfo({ countryInfo }) {
+function CountryInfo({ countryInfo }: CountryInfoProps) {
   return (
     <div className={Styles.innerContainer}>
       <div className={Styles.wrapper}>
-        {countryInfo.map((data: any) => (
-          <>
-            <div className={Styles.countryTitle} key={data.idd.suffixes}>
-              {data.name.common}
-            </div>
-            <img src={data.flags.png} alt="" />
-          </>
+        {countryInfo.map((data: Country) => (
+          <div className={Styles.countryItem} key={data.idd.suffixes}>
+            <div className={Styles.countryTitle}>{data.name.common}</div>
+            <img src={data.flags.png} alt={data.name.common} />
+          </div>
         ))}
         <div className={Styles.infoPanelWrapper}>
           <div className={Styles.infoPanel}>
