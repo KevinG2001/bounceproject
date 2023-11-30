@@ -5,6 +5,11 @@ const axios = require("axios");
 const app = express();
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, "frontend/build")));
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+});
+
 app.get("/api/data/:country", async (req, res) => {
   try {
     const country = req.params.country;
