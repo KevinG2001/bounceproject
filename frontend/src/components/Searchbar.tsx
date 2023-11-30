@@ -13,9 +13,7 @@ function Searchbar({ onSearch }: SearchbarProps) {
   async function handleClick() {
     setLoading(true);
     try {
-      const request = await fetch(
-        `https://brave-bay-0b6be7b03.4.azurestaticapps.net/api/data/${search}`
-      );
+      const request = await fetch(`http://localhost:5000/api/data/${search}`);
       const data = await request.json();
       onSearch(data);
       setSearchBarPos("top");
