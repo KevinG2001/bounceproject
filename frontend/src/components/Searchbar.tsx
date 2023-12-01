@@ -7,13 +7,11 @@ interface SearchbarProps {
 
 function Searchbar({ onSearch }: SearchbarProps) {
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const [searchBarPos, setSearchBarPos] = useState("");
 
-  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearch(e.target.value);
-  }
-
   async function handleClick() {
+    setLoading(true);
     try {
       const request = await fetch(`http://localhost:5000/api/data/${search}`);
       const data = await request.json();
@@ -21,6 +19,8 @@ function Searchbar({ onSearch }: SearchbarProps) {
       setSearchBarPos("top");
     } catch (error) {
       console.error("Fetch error", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -30,25 +30,19 @@ function Searchbar({ onSearch }: SearchbarProps) {
 
   return (
     <>
-      <div
-        className={`${Styles.container} ${
-          searchBarPos === "top" ? Styles.top : ""
-        }`}
-      >
+      <div className={Styles.container}>
         <input
           type="text"
-          placeholder=""
+          placeholder="Search for a country..."
           value={search}
-          onChange={handleSearch}
+          onChange={(e) => setSearch(e.target.value)}
           className={Styles.searchBarInput}
         />
-        <label htmlFor="searchBarInput" className={Styles.searchBarLbl}>
-          Search for country!
-        </label>
         <button onClick={handleClick} className={Styles.searchBtn}>
           Search
         </button>
       </div>
+      {loading && <div className={Styles.loadingDiv}>Loading...</div>}
       <div
         className={`${Styles.popular} ${
           searchBarPos === "top" ? Styles.top : ""

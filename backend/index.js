@@ -1,42 +1,30 @@
 const express = require("express");
 const cors = require("cors");
-const https = require("https");
+const axios = require("axios");
+const path = require("path"); // Don't forget to include 'path'
 
 const app = express();
-
-// Enable CORS for all routes
 app.use(cors());
 
-app.get("/api/data/:country", (req, res) => {
-  const country = req.params.country;
-  // Make a request to the external API
-  https
-    .get(
-      `https://restcountries.com/v3.1/name/${country}?fullText=true`,
-      (response) => {
-        let data = "";
-
-        response.on("data", (chunk) => {
-          data += chunk;
-        });
-
-        response.on("end", () => {
-          try {
-            const jsonData = JSON.parse(data);
-            res.json(jsonData); // Send the received data back to the frontend
-          } catch (error) {
-            res
-              .status(500)
-              .json({ error: "Error parsing data from external API" });
-          }
-        });
-      }
-    )
-    .on("error", (error) => {
-      res.status(500).json({ error: "Error fetching data from external API" });
-    });
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-app.listen(5000, () => {
-  console.log("Listening on port 5000");
+app.get("/api/data/:country", async (req, res) => {
+  try {
+    const country = req.params.country;
+    const externalApiUrl = `https://restcountries.com/v3.1/name/${country}?fullText=true`;
+
+    const response = await axios.get(externalApiUrl);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching data from external API:", error);
+    res.status(500).json({ error: "Error fetching data from external API" });
+  }
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
